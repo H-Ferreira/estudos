@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Revisão para Concursos</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Revisão de Estudos</h1>
+        
+        <div class="checklist-section">
+            <h2>Lista de Revisão</h2>
+            <div class="add-item">
+                <select id="materiaSelect" class="materia-select">
+                    <option value="">Selecione a Matéria</option>
+                    <option value="Contabilidade">Contabilidade</option>
+                    <option value="Direito Administrativo">Direito Administrativo</option>
+                    <option value="Direito Administrativo da Bahia">Direito Administrativo da Bahia</option>
+                    <option value="Direito Constitucional">Direito Constitucional</option>
+                    <option value="Direito Tributário">Direito Tributário</option>
+                    <option value="Estatística">Estatística</option>
+                    <option value="Gestão Organizacional">Gestão Organizacional</option>
+                    <option value="Igualdade Racial e de Gênero">Igualdade Racial e de Gênero</option>
+                    <option value="Português">Português</option>
+                    <option value="Matemática e RL">Matemática e RL</option>
+                    <option value="Tecnologia da Informação">Tecnologia da Informação</option>
+                    <option value="Discursiva">Discursiva</option>
+                </select>
+                <div class="add-item-row">
+                    <input type="text" id="newItem" placeholder="Novo item">
+                    <button onclick="addItem()">Adicionar</button>
+                </div>
+            </div>
+            
+            <div class="materia-filter">
+                <label>Filtrar por matéria:</label>
+                <select id="materiaFilter" onchange="filterItems()">
+                    <option value="">Todas as Matérias</option>
+                    <option value="Contabilidade">Contabilidade</option>
+                    <option value="Direito Administrativo">Direito Administrativo</option>
+                    <option value="Direito Administrativo da Bahia">Direito Administrativo da Bahia</option>
+                    <option value="Direito Constitucional">Direito Constitucional</option>
+                    <option value="Direito Tributário">Direito Tributário</option>
+                    <option value="Estatística">Estatística</option>
+                    <option value="Gestão Organizacional">Gestão Organizacional</option>
+                    <option value="Igualdade Racial e de Gênero">Igualdade Racial e de Gênero</option>
+                    <option value="Português">Português</option>
+                    <option value="Matemática e RL">Matemática e RL</option>
+                    <option value="Tecnologia da Informação">Tecnologia da Informação</option>
+                    <option value="Discursiva">Discursiva</option>
+                </select>
+            </div>
+            
+            <ul id="checklistItems"></ul>
+        </div>
+
+        <div class="audio-section">
+            <h2>Gravações de Áudio</h2>
+            <div class="recording-controls">
+                <select id="materiaAudioSelect" class="materia-select">
+                    <option value="">Selecione a Matéria</option>
+                    <option value="Contabilidade">Contabilidade</option>
+                    <option value="Direito Administrativo">Direito Administrativo</option>
+                    <option value="Direito Administrativo da Bahia">Direito Administrativo da Bahia</option>
+                    <option value="Direito Constitucional">Direito Constitucional</option>
+                    <option value="Direito Tributário">Direito Tributário</option>
+                    <option value="Estatística">Estatística</option>
+                    <option value="Gestão Organizacional">Gestão Organizacional</option>
+                    <option value="Igualdade Racial e de Gênero">Igualdade Racial e de Gênero</option>
+                    <option value="Português">Português</option>
+                    <option value="Matemática e RL">Matemática e RL</option>
+                    <option value="Tecnologia da Informação">Tecnologia da Informação</option>
+                    <option value="Discursiva">Discursiva</option>
+                </select>
+                <input type="text" id="audioDescription" placeholder="Conteúdo do áudio" maxlength="100">
+                <div class="audio-controls">
+                    <button id="startRecording">Iniciar Gravação</button>
+                    <button id="stopRecording" disabled>Parar Gravação</button>
+                </div>
+                <div class="recording-indicator">
+                    <div class="recording-dot"></div>
+                    <span>Gravando...</span>
+                </div>
+            </div>
+
+            <div class="recordings-header">
+                <div class="header-content">
+                    <h2>Minhas Gravações</h2>
+                    <div class="global-speed-control">
+                        <label>Velocidade:</label>
+                        <select class="speed-select" onchange="changeGlobalSpeed(this)">
+                            <option value="0.5">0.5x</option>
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>1x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="1.75">1.75x</option>
+                            <option value="2">2x</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="materia-filter">
+                    <select id="materiaAudioFilter" onchange="filterRecordings()">
+                        <option value="">Todas as Matérias</option>
+                        <option value="Contabilidade">Contabilidade</option>
+                        <option value="Direito Administrativo">Direito Administrativo</option>
+                        <option value="Direito Administrativo da Bahia">Direito Administrativo da Bahia</option>
+                        <option value="Direito Constitucional">Direito Constitucional</option>
+                        <option value="Direito Tributário">Direito Tributário</option>
+                        <option value="Estatística">Estatística</option>
+                        <option value="Gestão Organizacional">Gestão Organizacional</option>
+                        <option value="Igualdade Racial e de Gênero">Igualdade Racial e de Gênero</option>
+                        <option value="Português">Português</option>
+                        <option value="Matemática e RL">Matemática e RL</option>
+                        <option value="Tecnologia da Informação">Tecnologia da Informação</option>
+                        <option value="Discursiva">Discursiva</option>
+                    </select>
+                </div>
+            </div>
+            
+            <ul id="recordingsList"></ul>
+        </div>
+
+        <div class="backup-section">
+            <h2>Backup de Dados</h2>
+            <div class="backup-controls">
+                <button onclick="exportData()">Exportar Backup</button>
+                <input type="file" id="importFile" style="display: none;" onchange="importData(event)">
+                <button onclick="document.getElementById('importFile').click()">Importar Backup</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
